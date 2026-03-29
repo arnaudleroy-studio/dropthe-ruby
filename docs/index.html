@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dropthe-ruby - Ruby gem for DropThe open data API. Query movies, series, crypto, companies, and people from 1.83M entities.</title>
+    <meta name="description" content="Ruby gem for DropThe open data API. Query movies, series, crypto, companies, and people from 1.83M entities.">
+    <meta property="og:title" content="dropthe-ruby Documentation">
+    <meta property="og:description" content="Ruby gem for DropThe open data API. Query movies, series, crypto, companies, and people from 1.83M entities.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arnaudleroy-studio.github.io/dropthe-ruby/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="dropthe-ruby Documentation">
+    <meta name="twitter:description" content="Ruby gem for DropThe open data API. Query movies, series, crypto, companies, and people from 1.83M entities.">
+    <link rel="canonical" href="https://arnaudleroy-studio.github.io/dropthe-ruby/">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a0505 0%, #2d0a0a 50%, #1a0505 100%);
+            color: #e0e0e0;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        .header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .lang-badge {
+            display: inline-block;
+            background: #CC342D;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        .tagline {
+            font-size: 1.1rem;
+            color: #999;
+        }
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 40px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        h2 .accent {
+            color: #CC342D;
+        }
+        p {
+            margin-bottom: 16px;
+            color: #bbb;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        pre {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 8px;
+            padding: 20px 24px;
+            overflow-x: auto;
+            margin: 16px 0 24px;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+        code {
+            font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', Menlo, Consolas, monospace;
+            color: #d4d4d4;
+        }
+        .kw { color: #CC342D; font-weight: 600; }
+        .str { color: #98c379; }
+        .cmt { color: #5c6370; font-style: italic; }
+        .fn { color: #61afef; }
+        .attr { color: #c678dd; }
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 16px 0 24px;
+            list-style: none;
+        }
+        .features li {
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        .features li::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: #CC342D;
+            border-radius: 50%;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .api-method {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 12px 0;
+        }
+        .api-method code {
+            font-size: 0.85rem;
+            color: #fff;
+        }
+        .api-method p {
+            margin: 8px 0 0;
+            font-size: 0.88rem;
+            color: #888;
+        }
+        .method-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            color: #fff;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+            .method-badge.get { background: #CC342D; }
+            .method-badge.func { background: #9B1B30; }
+
+        .footer {
+            margin-top: 64px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.85rem;
+            color: #555;
+        }
+        .footer a {
+            color: #777;
+        }
+        .req {
+            display: inline-block;
+            background: rgba(255,255,255,0.05);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 16px;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 32px 16px; }
+            h1 { font-size: 1.6rem; }
+            .features { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <span class="lang-badge">Ruby</span>
+            <h1>dropthe-ruby</h1>
+            <p class="tagline">Ruby gem for DropThe open data API. Query movies, series, crypto, companies, and people from 1.83M entities.</p>
+        </header>
+
+        <section>
+            <h2>About <span class="accent">DropThe</span></h2>
+            <p>
+                This library provides idiomatic Ruby bindings for the
+                <a href="https://dropthe.org">DropThe</a> open data API. DropThe is a
+                data utility media network that aggregates and structures information across
+                entertainment, finance, and technology.
+            </p>
+            <p>
+                The <a href="https://dropthe.org">DropThe platform</a> maintains a knowledge graph
+                of 1.83 million entities with 2.9 million typed relationships, covering movies,
+                TV series, cryptocurrencies, public companies, and notable people. This Ruby
+                library provides full access to search, entity retrieval, and graph traversal.
+            </p>
+        </section>
+
+        <section>
+            <h2><span class="accent">#</span> Installation</h2>
+            <span class="req">Ruby 3.0+ | Rails 6+</span>
+            <pre><code><span class="cmt"># Install the gem</span>
+gem install dropthe
+
+<span class="cmt"># Or add to Gemfile</span>
+gem <span class="str">'dropthe'</span></code></pre>
+        </section>
+
+        <section>
+            <h2><span class="accent">#</span> Quick Start</h2>
+            <pre><code><span class="kw">require</span> <span class="str">'dropthe'</span>
+
+<span class="cmt"># Initialize the client</span>
+client = Dropthe::Client.<span class="fn">new</span>(api_key: <span class="str">'your-api-key'</span>)
+
+<span class="cmt"># Search 1.83M entities</span>
+results = client.<span class="fn">search</span>(<span class="str">'Breaking Bad'</span>)
+results.<span class="fn">each</span> <span class="kw">do</span> |entity|
+  <span class="fn">puts</span> <span class="str">"#{entity.name} (#{entity.type})"</span>
+<span class="kw">end</span>
+
+<span class="cmt"># Get entity with knowledge graph links</span>
+movie = client.<span class="fn">get_entity</span>(<span class="str">'the-dark-knight-2008'</span>)
+<span class="fn">puts</span> movie.name
+<span class="fn">puts</span> movie.data[<span class="str">'director'</span>]
+
+<span class="cmt"># Browse by type with filters</span>
+crypto = client.<span class="fn">list</span>(type: <span class="str">'cryptocurrencies'</span>, limit: 10)
+crypto.<span class="fn">each</span> { |c| <span class="fn">puts</span> <span class="str">"#{c.name}: #{c.data['price_usd']}"</span> }</code></pre>
+        </section>
+
+        <section>
+            <h2><span class="accent">#</span> Features</h2>
+            <ul class="features">
+                    <li>Thread-safe, Rails-compatible, lazy enumeration</li>
+                    <li>Movies & series metadata</li>
+                    <li>Cryptocurrency tracking</li>
+                    <li>Company profiles</li>
+                    <li>People database</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2><span class="accent">#</span> API Reference</h2>
+            
+            <div class="api-method">
+                <span class="method-badge get">GET</span>
+                <code>client.search(query, **options) -> Array&lt;Entity&gt;</code>
+                <p>Full-text search across movies, series, crypto, companies, and people datasets.</p>
+            </div>
+            <div class="api-method">
+                <span class="method-badge get">GET</span>
+                <code>client.get_entity(slug) -> Entity</code>
+                <p>Retrieve a single entity with all metadata, data fields, and linked entities.</p>
+            </div>
+            <div class="api-method">
+                <span class="method-badge get">GET</span>
+                <code>client.list(type:, limit:, offset:) -> Array&lt;Entity&gt;</code>
+                <p>Paginated listing of entities filtered by type with sorting options.</p>
+            </div>
+            <div class="api-method">
+                <span class="method-badge get">GET</span>
+                <code>client.get_links(entity_id) -> Array&lt;EntityLink&gt;</code>
+                <p>Access the knowledge graph: 2.9M+ typed relationships between entities.</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>
+                <a href="https://github.com/arnaudleroy-studio/dropthe-ruby">Source on GitHub</a>
+                &middot;
+                <a href="https://arnaudleroy-studio.github.io/">Arnaud Leroy Studio</a>
+                &middot;
+                <a href="https://dropthe.org">dropthe.org</a>
+            </p>
+            <p style="margin-top: 8px;">MIT License &middot; &copy; 2026 Arnaud Leroy Studio</p>
+        </footer>
+    </div>
+</body>
+</html>
